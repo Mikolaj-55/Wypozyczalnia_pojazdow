@@ -2,7 +2,7 @@
 #define PRACOWNIKOBSLUGI_HPP
 
 #include "Osoba.hpp"
-//#include "Date.hpp"
+#include "Date.hpp"
 
 class PracownikObslugi : public Osoba
 {
