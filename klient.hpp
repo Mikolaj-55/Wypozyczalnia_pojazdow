@@ -2,26 +2,26 @@
 #define KLIENT_HPP
 
 #include <vector>
-#include "Osoba.hpp"
-#include "Rezerwacja.hpp"
+#include "osoba.hpp"
+#include "rezerwacja.hpp"
 
 
 class Klient : public Osoba
 {
     private:
-        std::vector<Rezerwacja> listaRezerwacji;
+        std::vector<Rezerwacja> lista_rezerwacji;
         double kary;
 
     public:
-        Klient(std::vector<Rezerwacja>& listaRezerwacji={}, double kary=0.0)
-        : listaRezerwacji(listaRezerwacji), kary(kary) {}
+        Klient(std::vector<Rezerwacja>& lista_rezerwacji={}, double kary=0.0)
+        : lista_rezerwacji(lista_rezerwacji), kary(kary) {}
         virtual ~Klient() = default;
 
         void dodajRezerwacje(const Rezerwacja& rezerwacja);
         bool usunRezerwacje(const Rezerwacja& rezerwacja);
         void dodajKare(double kara);
 
-        std::vector<Rezerwacja>& getlistaRezerwacji() const{return listaRezerwacji;}
+        std::vector<Rezerwacja>& getLista_rezerwacji() const{return lista_rezerwacji;}
         double getKary() const{return kary;}
 };
 
