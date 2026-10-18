@@ -10,15 +10,18 @@ class Date
         int year;
 
     public:
-        Date(int day, int month, int year);
+        Date(int day, int month, int year)
+        : day(day), month(month), year(year) {}
         virtual ~Date();
 
-        int getDay() {return day;}
-        void setDay(int val) {day = val;}
-        int getMonth() {return month;}
-        void setMonth(int val) {month = val;}
-        int getYear() {return year;}
-        void setYear(int val) {year = val;}
+        int getDay() const;
+        void setDay(int val);
+        int getMonth() const;
+        void setMonth(int val);
+        int getYear() const;
+        void setYear(int val);
+
+        //jakis print jeszcze
 };
 
 #endif // DATE_HPP

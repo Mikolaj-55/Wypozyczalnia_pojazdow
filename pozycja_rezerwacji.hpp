@@ -5,9 +5,16 @@
 
 class PozycjaRezerwacji
 {
+    private:
+        Pojazd pojazd;
+
     public:
-        PozycjaRezerwacji(Pojazd pojazd);
+        PozycjaRezerwacji(const Pojazd& pojazd=Pojazd())
+        : pojazd(pojazd) {}
         virtual ~PozycjaRezerwacji();
+
+        const Pojazd& getPojazd() const;
+        void setPojazd(const Pojazd& val);
 };
 
 #endif // POZYCJAREZERWACJI_HPP

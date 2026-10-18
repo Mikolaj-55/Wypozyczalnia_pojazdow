@@ -13,19 +13,20 @@ class Pojazd
         bool dostepnosc;
 
     public:
-        Pojazd(std::string marka, std::string model, std::string typ, std::string numer_vin, bool dostepnosc);
+        Pojazd(const std::string& marka="", const std::string& model="", const std::string& typ="", const std::string& numer_vin="", bool dostepnosc=false)
+        : marka(marka), model(model), typ(typ), numer_vin(numer_vin), dostepnosc(dostepnosc) {}
         virtual ~Pojazd();
 
-        std::string getMarka() {return marka;}
-        void setMarka(std::string val) {marka = val;}
-        std::string getModel() {return model;}
-        void setModel(std::string val) {model = val;}
-        std::string getTyp() {return typ;}
-        void setTyp(std::string val) {typ = val;}
-        std::string getNumer_vin() {return numer_vin;}
-        void setNumer_vin(std::string val) {numer_vin = val;}
-        bool getDostepnosc() {return dostepnosc;}
-        void setDostepnosc(bool val) {dostepnosc = val;}
+        const std::string& getMarka() const;
+        void setMarka(const std::string& val);
+        const std::string& getModel() const;
+        void setModel(const std::string& val);
+        const std::string& getTyp() const;
+        void setTyp(const std::string& val);
+        const std::string& getNumer_vin() const;
+        void setNumer_vin(const std::string& val);
+        bool getDostepnosc() const;
+        void setDostepnosc(bool val);
 };
 
 #endif // POJAZD_HPP

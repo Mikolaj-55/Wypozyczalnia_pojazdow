@@ -1,6 +1,7 @@
 #ifndef PLATNOSC_HPP
 #define PLATNOSC_HPP
 
+#include <string>
 
 class Platnosc
 {
@@ -9,13 +10,14 @@ class Platnosc
         double koszt;
 
     public:
-        Platnosc(std::string metoda, double koszt);
+        Platnosc(const std::string& metoda="", double koszt=0.0)
+        : metoda(metoda), koszt(koszt) {}
         virtual ~Platnosc();
 
-        std::string getMetoda() {return metoda;}
-        void setMetoda(std::string val) {metoda = val;}
-        double getKoszt() {return koszt;}
-        void setKoszt(double val) {koszt = val;}
+        const std::string& getMetoda() const;
+        void setMetoda(const std::string& val);
+        double getKoszt() const;
+        void setKoszt(double val);
 };
 
 #endif // PLATNOSC_HPP
