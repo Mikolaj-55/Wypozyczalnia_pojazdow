@@ -1,6 +1,7 @@
 #ifndef REZERWACJA_HPP
 #define REZERWACJA_HPP
 
+#include <vector>
 #include "date.hpp"
 #include "pozycja_rezerwacji.hpp"
 #include "platnosc.hpp"
@@ -15,19 +16,20 @@ class Rezerwacja
         bool potwierdzenie;
 
     public:
-        Rezerwacja(Date data_rezerwacji, Date data_zwrotu, std::vector<PozycjaRezerwacji> pozycje, Platnosc platnosc, bool potwierdzenie);
+        Rezerwacja(const Date& data_rezerwacji=Date(), const Date& data_zwrotu=Date(), const std::vector<PozycjaRezerwacji>& pozycje={}, const Platnosc& platnosc=Platnosc(), bool potwierdzenie=false)
+        : data_rezerwacji(data_rezerwacji), data_zwrotu(data_zwrotu), pozycje(pozycje), platnosc(platnosc), potwierdzenie(potwierdzenie) {}
         virtual ~Rezerwacja();
 
-        Date getData_rezerwacji() {return data_rezerwacji;}
-        void setData_rezerwacji(Date val) {data_rezerwacji = val;}
-        Date getData_zwrotu() {return data_zwrotu;}
-        void setData_zwrotu(Date val) {data_zwrotu = val;}
-        std::vector<PozycjaRezerwacji> getPozycje() {return pozycje;}
-        void setPozycje(std::vector<PozycjaRezerwacji> val) {pozycje = val;}
-        Platnosc getPlatnosc() {return platnosc;}
-        void setPlatnosc(Platnosc val) {platnosc = val;}
-        bool getPotwierdzenie() {return potwierdzenie;}
-        void setPotwierdzenie(bool val) {potwierdzenie = val;}
+        const Date& getData_rezerwacji() const;
+        void setData_rezerwacji(const Date& val);
+        const Date& getData_zwrotu() const;
+        void setData_zwrotu(const Date& val);
+        const std::vector<PozycjaRezerwacji>& getPozycje() const;
+        void setPozycje(const std::vector<PozycjaRezerwacji>& val);
+        const Platnosc& getPlatnosc() const;
+        void setPlatnosc(const Platnosc& val);
+        bool getPotwierdzenie() const;
+        void setPotwierdzenie(bool val);
 };
 
 #endif // REZERWACJA_HPP
