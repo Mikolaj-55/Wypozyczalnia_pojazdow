@@ -15,7 +15,7 @@ class Pojazd
     public:
         Pojazd(const std::string& marka="", const std::string& model="", const std::string& typ="", const std::string& numer_vin="", bool dostepnosc=false)
         : marka(marka), model(model), typ(typ), numer_vin(numer_vin), dostepnosc(dostepnosc) {}
-        virtual ~Pojazd();
+        virtual ~Pojazd()=default;
 
         const std::string& getMarka() const;
         void setMarka(const std::string& val);

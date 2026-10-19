@@ -10,9 +10,9 @@ class Date
         int year;
 
     public:
-        Date(int day, int month, int year)
+        Date(int day=0, int month=0, int year=0)
         : day(day), month(month), year(year) {}
-        virtual ~Date();
+        virtual ~Date()=default;
 
         int getDay() const;
         void setDay(int val);
@@ -21,7 +21,7 @@ class Date
         int getYear() const;
         void setYear(int val);
 
-        //jakis print jeszcze
+        void print(int day, int month, int year) const;
 };
 
 #endif // DATE_HPP

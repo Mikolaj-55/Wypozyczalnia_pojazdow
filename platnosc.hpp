@@ -12,7 +12,7 @@ class Platnosc
     public:
         Platnosc(const std::string& metoda="", double koszt=0.0)
         : metoda(metoda), koszt(koszt) {}
-        virtual ~Platnosc();
+        virtual ~Platnosc()=default;
 
         const std::string& getMetoda() const;
         void setMetoda(const std::string& val);

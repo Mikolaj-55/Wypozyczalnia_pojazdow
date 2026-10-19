@@ -11,7 +11,7 @@ class PozycjaRezerwacji
     public:
         PozycjaRezerwacji(const Pojazd& pojazd=Pojazd())
         : pojazd(pojazd) {}
-        virtual ~PozycjaRezerwacji();
+        virtual ~PozycjaRezerwacji()=default;
 
         const Pojazd& getPojazd() const;
         void setPojazd(const Pojazd& val);

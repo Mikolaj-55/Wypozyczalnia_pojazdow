@@ -20,7 +20,7 @@ class SystemRezerwacji
     public:
         SystemRezerwacji(double stawka_dniowa=0.0, const std::vector<PracownikObslugi>& lista_pracownikow={}, const std::vector<Klient>& lista_klientow={}, const std::vector<Pojazd>& katalog_pojazdow={}, const std::vector<Rezerwacja>& aktywne_rezerwacje={})
         : stawka_dniowa(stawka_dniowa), lista_pracownikow(lista_pracownikow), lista_klientow(lista_klientow), katalog_pojazdow(katalog_pojazdow), aktywne_rezerwacje(aktywne_rezerwacje) {}
-        virtual ~SystemRezerwacji();
+        virtual ~SystemRezerwacji()=default;
 
         double getStawka_dniowa() const;
         void setStawka_dniowa(double val);
