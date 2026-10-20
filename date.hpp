@@ -10,9 +10,8 @@ class Date
         int year;
 
     public:
-        Date(int day=0, int month=0, int year=0)
-        : day(day), month(month), year(year) {}
-        virtual ~Date()=default;
+        Date(int day=0, int month=0, int year=0);
+        virtual ~Date();
 
         int getDay() const;
         void setDay(int val);

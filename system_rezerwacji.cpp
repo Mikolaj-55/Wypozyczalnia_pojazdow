@@ -1,5 +1,11 @@
 #include "system_rezerwacji.hpp"
 
+SystemRezerwacji::SystemRezerwacji(double stawka_dniowa, const std::vector<PracownikObslugi>& lista_pracownikow, const std::vector<Klient>& lista_klientow, const std::vector<Pojazd>& katalog_pojazdow, const std::vector<Rezerwacja>& aktywne_rezerwacje)
+    : stawka_dniowa(stawka_dniowa), lista_pracownikow(lista_pracownikow), lista_klientow(lista_klientow), katalog_pojazdow(katalog_pojazdow), aktywne_rezerwacje(aktywne_rezerwacje) {}
+
+SystemRezerwacji::~SystemRezerwacji() = default;
+
+
 double SystemRezerwacji::getStawka_dniowa() const
 {
     return stawka_dniowa;

@@ -1,5 +1,11 @@
 #include "pracownik_obslugi.hpp"
 
+PracownikObslugi::PracownikObslugi(const std::string& imie, const std::string& nazwisko, int id, int id_pracownik, const Date& data_zatrudnienia, double pensja)
+    : Osoba(imie, nazwisko, id), id_pracownik(id_pracownik), data_zatrudnienia(data_zatrudnienia), pensja(pensja) {}
+
+PracownikObslugi::~PracownikObslugi() = default;
+
+
 int PracownikObslugi::getId_pracownik() const
 {
     return id_pracownik;

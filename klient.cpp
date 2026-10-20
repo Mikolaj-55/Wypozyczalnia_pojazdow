@@ -1,5 +1,11 @@
 #include "klient.hpp"
 
+Klient::Klient(const std::string& imie, const std::string& nazwisko, int id, const std::vector<Rezerwacja>& lista_rezerwacji, double kary)
+    : Osoba(imie, nazwisko, id), lista_rezerwacji(lista_rezerwacji), kary(kary) {}
+
+Klient::~Klient() = default;
+
+
 const std::vector<Rezerwacja>& Klient::getLista_rezerwacji() const
 {
     return lista_rezerwacji;

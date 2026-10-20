@@ -16,9 +16,8 @@ class Rezerwacja
         bool potwierdzenie;
 
     public:
-        Rezerwacja(const Date& data_rezerwacji=Date(), const Date& data_zwrotu=Date(), const std::vector<PozycjaRezerwacji>& pozycje={}, const Platnosc& platnosc=Platnosc(), bool potwierdzenie=false)
-        : data_rezerwacji(data_rezerwacji), data_zwrotu(data_zwrotu), pozycje(pozycje), platnosc(platnosc), potwierdzenie(potwierdzenie) {}
-        virtual ~Rezerwacja()=default;
+        Rezerwacja(const Date& data_rezerwacji=Date(), const Date& data_zwrotu=Date(), const std::vector<PozycjaRezerwacji>& pozycje={}, const Platnosc& platnosc=Platnosc(), bool potwierdzenie=false);
+        virtual ~Rezerwacja();
 
         const Date& getData_rezerwacji() const;
         void setData_rezerwacji(const Date& val);

@@ -1,5 +1,11 @@
 #include "rezerwacja.hpp"
 
+Rezerwacja::Rezerwacja(const Date& data_rezerwacji, const Date& data_zwrotu, const std::vector<PozycjaRezerwacji>& pozycje, const Platnosc& platnosc, bool potwierdzenie)
+    : data_rezerwacji(data_rezerwacji), data_zwrotu(data_zwrotu), pozycje(pozycje), platnosc(platnosc), potwierdzenie(potwierdzenie) {}
+
+Rezerwacja::~Rezerwacja() = default;
+
+
 const Date& Rezerwacja::getData_rezerwacji() const
 {
     return data_rezerwacji;

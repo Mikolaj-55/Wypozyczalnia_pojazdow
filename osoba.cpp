@@ -1,5 +1,11 @@
 #include "osoba.hpp"
 
+Osoba::Osoba(const std::string& imie, const std::string& nazwisko, int id)
+    : imie(imie), nazwisko(nazwisko), id(id) {}
+
+Osoba::~Osoba() = default;
+
+
 const std::string& Osoba::getImie() const
 {
     return imie;

@@ -1,5 +1,11 @@
 #include "pojazd.hpp"
 
+Pojazd::Pojazd(const std::string& marka, const std::string& model, const std::string& typ, const std::string& numer_vin, bool dostepnosc)
+    : marka(marka), model(model), typ(typ), numer_vin(numer_vin), dostepnosc(dostepnosc) {}
+
+Pojazd::~Pojazd() = default;
+
+
 const std::string& Pojazd::getMarka() const
 {
     return marka;

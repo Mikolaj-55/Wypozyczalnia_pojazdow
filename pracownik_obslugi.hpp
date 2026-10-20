@@ -1,6 +1,7 @@
 #ifndef PRACOWNIKOBSLUGI_HPP
 #define PRACOWNIKOBSLUGI_HPP
 
+#include <string>
 #include "osoba.hpp"
 #include "date.hpp"
 
@@ -12,9 +13,8 @@ class PracownikObslugi : public Osoba
         double pensja;
 
     public:
-        PracownikObslugi(int id_pracownik=0, const Date& data_zatrudnienia=Date(), double pensja=0.0)
-        : id_pracownik(id_pracownik), data_zatrudnienia(data_zatrudnienia), pensja(pensja) {}
-        virtual ~PracownikObslugi() = default;
+        PracownikObslugi(const std::string& imie = "", const std::string& nazwisko = "", int id = 0,int id_pracownik=0, const Date& data_zatrudnienia=Date(), double pensja=0.0);
+        virtual ~PracownikObslugi();
 
         int getId_pracownik() const;
         void setId_pracownik(int val);

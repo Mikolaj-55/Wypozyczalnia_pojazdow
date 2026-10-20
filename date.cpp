@@ -1,6 +1,12 @@
 #include <iostream>
 #include "date.hpp"
 
+Date::Date(int day, int month, int year)
+    : day(day), month(month), year(year) {}
+
+Date::~Date() = default;
+
+
 int Date::getDay() const
 {
     return day;

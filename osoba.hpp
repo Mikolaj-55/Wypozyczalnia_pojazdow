@@ -12,9 +12,8 @@ class Osoba
         int id;
 
     public:
-        Osoba(const std::string& imie="", const std::string& nazwisko="", int id=0)
-        : imie(imie), nazwisko(nazwisko), id(id) {}
-        virtual ~Osoba() = default;
+        Osoba(const std::string& imie="", const std::string& nazwisko="", int id=0);
+        virtual ~Osoba();
 
         const std::string& getImie() const;
         void setImie(const std::string& val);
