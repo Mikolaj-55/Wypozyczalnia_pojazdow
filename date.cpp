@@ -38,7 +38,7 @@ void Date::setYear(int val)
 }
 
 
-void Date::print(int day, int month, int year) const
+void Date::print() const
 {
-    std::cout<<day<<"."<<month<<"."<<year<<'\n';
+    std::cout<<day<<"."<<month<<"."<<year;
 }

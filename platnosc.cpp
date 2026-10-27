@@ -1,3 +1,4 @@
+#include <iostream>
 #include "platnosc.hpp"
 
 Platnosc::Platnosc(const std::string& metoda, double koszt)
@@ -24,4 +25,9 @@ void Platnosc::setMetoda(const std::string& val)
 void Platnosc::setKoszt(double val)
 {
     koszt=val;
+}
+
+void Platnosc::print() const
+{
+    std::cout<<"Koszt: "<<koszt<<std::endl<<"Metoda platnosci: "<<metoda;
 }

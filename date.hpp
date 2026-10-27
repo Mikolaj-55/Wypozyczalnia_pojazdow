@@ -20,7 +20,7 @@ class Date
         int getYear() const;
         void setYear(int val);
 
-        void print(int day, int month, int year) const;
+        void print() const;
 };
 
 #endif // DATE_HPP

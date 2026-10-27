@@ -29,15 +29,21 @@ void Klient::setKary(double val)
 
 void Klient::dodajRezerwacje(const Rezerwacja& rezerwacja)
 {
-
+    lista_rezerwacji.push_back(rezerwacja);
 }
 
-bool Klient::usunRezerwacje(const Rezerwacja& rezerwacja)
+bool Klient::usunRezerwacje(int id_rezerwacji)
 {
-
+    for(int i=0;i<lista_rezerwacji.size();i++){
+        if(lista_rezerwacji[i].getId_rezerwacji()==id_rezerwacji){
+            lista_rezerwacji.erase(lista_rezerwacji.begin()+i);
+            return true;
+        }
+    }
+    return false;
 }
 
 void Klient::dodajKare(double kara)
 {
-
+    kary+=kara;
 }

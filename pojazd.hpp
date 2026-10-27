@@ -26,6 +26,8 @@ class Pojazd
         void setNumer_vin(const std::string& val);
         bool getDostepnosc() const;
         void setDostepnosc(bool val);
+
+        void print() const;
 };
 
 #endif // POJAZD_HPP

@@ -9,6 +9,7 @@
 class Rezerwacja
 {
     private:
+        int id_rezerwacji;
         Date data_rezerwacji;
         Date data_zwrotu;
         std::vector<PozycjaRezerwacji> pozycje;
@@ -16,9 +17,11 @@ class Rezerwacja
         bool potwierdzenie;
 
     public:
-        Rezerwacja(const Date& data_rezerwacji=Date(), const Date& data_zwrotu=Date(), const std::vector<PozycjaRezerwacji>& pozycje={}, const Platnosc& platnosc=Platnosc(), bool potwierdzenie=false);
+        Rezerwacja(int id_rezerwacji=0, const Date& data_rezerwacji=Date(), const Date& data_zwrotu=Date(), const std::vector<PozycjaRezerwacji>& pozycje={}, const Platnosc& platnosc=Platnosc(), bool potwierdzenie=false);
         virtual ~Rezerwacja();
 
+        int getId_rezerwacji() const;
+        void setId_rezerwacji(int val);
         const Date& getData_rezerwacji() const;
         void setData_rezerwacji(const Date& val);
         const Date& getData_zwrotu() const;
@@ -29,6 +32,8 @@ class Rezerwacja
         void setPlatnosc(const Platnosc& val);
         bool getPotwierdzenie() const;
         void setPotwierdzenie(bool val);
+
+        void print() const;
 };
 
 #endif // REZERWACJA_HPP

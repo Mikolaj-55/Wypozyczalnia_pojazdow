@@ -1,4 +1,6 @@
+#include <iostream>
 #include "pojazd.hpp"
+using namespace std;
 
 Pojazd::Pojazd(const std::string& marka, const std::string& model, const std::string& typ, const std::string& numer_vin, bool dostepnosc)
     : marka(marka), model(model), typ(typ), numer_vin(numer_vin), dostepnosc(dostepnosc) {}
@@ -54,4 +56,10 @@ void Pojazd::setNumer_vin(const std::string& val)
 void Pojazd::setDostepnosc(bool val)
 {
     dostepnosc=val;
+}
+
+
+void Pojazd::print() const
+{
+    cout<<"Typ: "<<typ<<endl<<"Marka: "<<marka<<endl<<"Model: "<<model<<endl<<"Numer VIN: "<<numer_vin<<endl<<"Dostepny: "<<dostepnosc;
 }

@@ -17,6 +17,8 @@ class Platnosc
         void setMetoda(const std::string& val);
         double getKoszt() const;
         void setKoszt(double val);
+
+        void print() const;
 };
 
 #endif // PLATNOSC_HPP

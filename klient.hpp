@@ -23,7 +23,7 @@ class Klient : public Osoba
         void setKary(double val);
         
         void dodajRezerwacje(const Rezerwacja& rezerwacja);
-        bool usunRezerwacje(const Rezerwacja& rezerwacja);
+        bool usunRezerwacje(int id_rezerwacji);
         void dodajKare(double kara);
 
 };
