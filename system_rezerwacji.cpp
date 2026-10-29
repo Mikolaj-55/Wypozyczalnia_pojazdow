@@ -62,7 +62,12 @@ void SystemRezerwacji::menu()
 
 }
 
-bool SystemRezerwacji::zarezerwuj(int id_klient, const Pojazd& pojazd, const Date& data, int okres, const std::string& metoda)
+bool SystemRezerwacji::zarezerwuj(int id_klient, const Date& data, int okres, const std::string& metoda)
+{
+    
+}
+
+void SystemRezerwacji::wybierzPojazd(const std::string& numer_vin)
 {
     
 }

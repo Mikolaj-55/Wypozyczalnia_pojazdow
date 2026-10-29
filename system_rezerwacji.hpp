@@ -7,6 +7,7 @@
 #include "klient.hpp"
 #include "pojazd.hpp"
 #include "rezerwacja.hpp"
+#include "date.hpp"
 
 class SystemRezerwacji
 {
@@ -33,7 +34,8 @@ class SystemRezerwacji
         void setAktywne_rezerwacje(const std::vector<Rezerwacja>& val);
 
         void menu();
-        bool zarezerwuj(int id_klient, const Pojazd& pojazd, const Date& data, int okres, const std::string& metoda);
+        bool zarezerwuj(int id_klient, const Date& data, int okres, const std::string& metoda);
+        void wybierzPojazd(const std::string& numer_vin);
         void dodajPojazd(int id_pracownik, const Pojazd& pojazd);
         bool usunPojazd(int id_pracownik, const std::string& numer_vin);
         void zatwierdzRezerwacje(int id_pracownik, int id_klient, const Rezerwacja& rezerwacja);
