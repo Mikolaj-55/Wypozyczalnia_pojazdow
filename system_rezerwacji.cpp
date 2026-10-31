@@ -1,5 +1,8 @@
 #include "system_rezerwacji.hpp"
+#include <iostream>
 
+
+using namespace std;
 SystemRezerwacji::SystemRezerwacji(double stawka_dniowa, const std::vector<PracownikObslugi>& lista_pracownikow, const std::vector<Klient>& lista_klientow, const std::vector<Pojazd>& katalog_pojazdow, const std::vector<Rezerwacja>& aktywne_rezerwacje)
     : stawka_dniowa(stawka_dniowa), lista_pracownikow(lista_pracownikow), lista_klientow(lista_klientow), katalog_pojazdow(katalog_pojazdow), aktywne_rezerwacje(aktywne_rezerwacje) {}
 
@@ -57,10 +60,56 @@ void SystemRezerwacji::setAktywne_rezerwacje(const std::vector<Rezerwacja>& val)
 }
 
 
-void SystemRezerwacji::menu()
-{
+void SystemRezerwacji::menuPracownik(int id){
+    bool petla = true;
+    while(petla){
+        int choice;
+        cout<<endl;
+        cout<<"Menu rezerwacji - Widok Pracownika"<<endl;
+        cout<<" 1. Wyświetl Pojazdy \n 2. Dodaj Pojazd \n 3. Usuń Pojazd \n 4. Wyświetl listę rezerwacji \n";
+        cin>>choice;
+
+    }
+}
+
+void SystemRezerwacji::menuKlient(int id){
 
 }
+
+void SystemRezerwacji::menu()
+{   
+    bool petla = true;
+    while(petla){
+        int user;
+        cout<<"Menu rezerwacji"<<endl;
+        cout<<"1. Klient"<<endl<<" 2. Pracownik"<<endl<<"0. Zakończ";
+        cin>>user;
+        switch (user)
+        {
+            int id;
+        case 1:
+            cout<<"Podaj id pracownika"<<endl;
+            cin>>id;
+            petla = false;
+            menuKlient(id);
+            break;
+        
+        case 2:
+            cout<<"Podaj id klienta"<<endl;
+            cin>>id;
+            petla = false;
+            menuPracownik(id);
+            break;
+        case 0:
+            petla = false;
+            break;
+        default:
+            cout<<"Zła opcja podaj poprawną";
+            break;
+        }
+    }
+}
+
 
 bool SystemRezerwacji::zarezerwuj(int id_klient, const Date& data, int okres, const std::string& metoda)
 {
