@@ -66,8 +66,31 @@ void SystemRezerwacji::menuPracownik(int id){
         int choice;
         cout<<endl;
         cout<<"Menu rezerwacji - Widok Pracownika"<<endl;
-        cout<<" 1. Wyświetl Pojazdy \n 2. Dodaj Pojazd \n 3. Usuń Pojazd \n 4. Wyświetl listę rezerwacji \n";
+        cout<<" 1. Wyświetl Pojazdy \n 2. Dodaj Pojazd \n 3. Usuń Pojazd \n 4. Wyświetl listę rezerwacji \n 0. Wyjdź";
         cin>>choice;
+        switch(choice){
+            case 1:
+
+                // int n = katalog_pojazdow.size();
+                // for(int i =0 ; i<n; i++){
+                //     cout<<endl<<i;
+                // }
+                break;
+            case 2:
+
+                break;
+            case 3:
+                break;
+            case 4:
+
+                break;
+            case 0:
+                petla=false;
+                break;
+            default:
+                cout<<"Zła opcja podaj poprawną";
+                break;
+        }
 
     }
 }
