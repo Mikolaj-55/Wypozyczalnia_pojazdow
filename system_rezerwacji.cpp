@@ -59,8 +59,26 @@ void SystemRezerwacji::setAktywne_rezerwacje(const std::vector<Rezerwacja>& val)
     aktywne_rezerwacje=val;
 }
 
+Klient* SystemRezerwacji::znajdzKlienta(int id){
+    int n = lista_klientow.size();
+    for(int i=0;i<n;i++){
+        if(lista_klientow[i].getId()==id){
+            return &lista_klientow[i];
+        }
+    }
+    return nullptr;
+}
+bool SystemRezerwacji::czyPracownik(int id){
+    int n = lista_pracownikow.size();
+    for(int i=0;i<n;i++){
+        if(lista_pracownikow[i].getId()==id){
+            return true;
+        }
+    }
+    return false;
+}
 
-void SystemRezerwacji::menuPracownik(int id){
+void SystemRezerwacji::menuPracownik(int id_pracownik){
     bool petla = true;
     while(petla){
         int choice;
@@ -71,12 +89,19 @@ void SystemRezerwacji::menuPracownik(int id){
         switch(choice){
             case 1:
 
-                // int n = katalog_pojazdow.size();
-                // for(int i =0 ; i<n; i++){
-                //     cout<<endl<<i;
-                // }
+                int n = katalog_pojazdow.size();
+                for(int i =0 ; i<n; i++){
+                    cout<<endl;
+                    cout<<i<<". ===== ";
+                    katalog_pojazdow[i].print();
+                }
+                int wybor;
+                cin>>wybor;
+                wybierzPojazd(katalog_pojazdow[wybor-1].getNumer_vin(),wybor, true, id_pracownik);
                 break;
             case 2:
+
+
 
                 break;
             case 3:
@@ -95,8 +120,44 @@ void SystemRezerwacji::menuPracownik(int id){
     }
 }
 
-void SystemRezerwacji::menuKlient(int id){
+void SystemRezerwacji::menuKlient(Klient klient){
+    bool petla = true;
+    while(petla){
+        int choice;
+        cout<<endl;
+        cout<<"Menu rezerwacji - Widok Pracownika"<<endl;
+        cout<<" 1. Wyświetl dostępne pojazdy \n 2.  \n 3. Wyświetl listę rezerwacji \n 0. Wyjdź";
+        cin>>choice;
+        switch(choice){
+            case 1:
 
+                int n = katalog_pojazdow.size();
+                for(int i =0 ; i<n; i++){
+                    cout<<endl;
+                    cout<<i+1<<". ===== ";
+                    katalog_pojazdow[i].print();
+                }
+                int wybor;
+                cin>>wybor;
+                wybierzPojazd(katalog_pojazdow[wybor-1].getNumer_vin(),wybor, false, klient.getId());
+                break;
+            case 2:
+
+
+                
+                break;
+            case 3:
+                break;
+
+            case 0:
+                petla=false;
+                break;
+            default:
+                cout<<"Zła opcja podaj poprawną";
+                break;
+        }
+
+    }
 }
 
 void SystemRezerwacji::menu()
@@ -107,21 +168,33 @@ void SystemRezerwacji::menu()
         cout<<"Menu rezerwacji"<<endl;
         cout<<"1. Klient"<<endl<<" 2. Pracownik"<<endl<<"0. Zakończ";
         cin>>user;
+        int id;
+        Klient klient;
         switch (user)
         {
-            int id;
         case 1:
-            cout<<"Podaj id pracownika"<<endl;
-            cin>>id;
-            petla = false;
-            menuKlient(id);
+            cout << "Podaj id klienta:" << endl; 
+            cin >> id;
+            {
+                Klient* znalezionyKlient = znajdzKlienta(id);
+                if (znalezionyKlient != nullptr) {
+                    petla = false;
+                    menuKlient(*znalezionyKlient);
+                } else {
+                    cout << "Nie znaleziono klienta o podanym ID!" << endl;
+                }
+            }
             break;
         
         case 2:
-            cout<<"Podaj id klienta"<<endl;
-            cin>>id;
-            petla = false;
-            menuPracownik(id);
+            cout << "Podaj id pracownika:" << endl;
+            cin >> id;
+            if (czyPracownik(id)) {
+                petla = false;
+                menuPracownik(id);
+            } else {
+                cout << "Nie znaleziono pracownika o podanym ID!" << endl;
+            }
             break;
         case 0:
             petla = false;
@@ -134,14 +207,17 @@ void SystemRezerwacji::menu()
 }
 
 
-bool SystemRezerwacji::zarezerwuj(int id_klient, const Date& data, int okres, const std::string& metoda)
+bool SystemRezerwacji::zarezerwuj(int id_klient, const Date& data, int okres, const std::string& metoda, PozycjaRezerwacji pojazd)
 {
+
     
+
 }
 
-void SystemRezerwacji::wybierzPojazd(const std::string& numer_vin)
+void SystemRezerwacji::wybierzPojazd(const std::string& numer_vin, int id_pojazdu, bool pracownik, int osoba_id)
 {
     
+
 }
 
 void SystemRezerwacji::dodajPojazd(int id_pracownik, const Pojazd& pojazd)

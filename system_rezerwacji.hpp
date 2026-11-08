@@ -33,11 +33,14 @@ class SystemRezerwacji
         const std::vector<Rezerwacja>& getAktywne_rezerwacje() const;
         void setAktywne_rezerwacje(const std::vector<Rezerwacja>& val);
 
-        void menuPracownik(int id);
-        void menuKlient(int id);
+        Klient* znajdzKlienta(int id);
+        bool czyPracownik(int id);
+        void menuPracownik(int id_pracownik);
+        void menuKlient(Klient klient);
+
         void menu();
-        bool zarezerwuj(int id_klient, const Date& data, int okres, const std::string& metoda);
-        void wybierzPojazd(const std::string& numer_vin);
+        bool zarezerwuj(int id_klient, const Date& data, int okres, const std::string& metoda, PozycjaRezerwacji pojazd);
+        void wybierzPojazd(const std::string &numer_vin, int id_pojazdu, bool pracownik, int osoba_id);
         void dodajPojazd(int id_pracownik, const Pojazd& pojazd);
         bool usunPojazd(int id_pracownik, const std::string& numer_vin);
         void zatwierdzRezerwacje(int id_pracownik, int id_klient, const Rezerwacja& rezerwacja);
