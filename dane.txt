@@ -1,38 +1,38 @@
 Pracownik_obslugi
-Jan Kowalski 8001 4001 8 3 2021 6200.0
+Jan Kowalski 1 1 8 3 2021 6200.0
 Pracownik_obslugi
-Anna Nowak 8002 4002 12 4 2021 5800.0
+Anna Nowak 2 2 12 4 2021 5800.0
 Pracownik_obslugi
-Piotr Wiśniewski 8007 4003 16 10 2025 4300.0
+Piotr Wiśniewski 7 3 16 10 2025 4300.0
 Klient
-Katarzyna Wójcik 8003 0.0
+Katarzyna Wójcik 3 0.0
 0
 Klient
-Tomasz Kamiński 8004 0.0
+Tomasz Kamiński 4 0.0
 1
-4 6 11 2026 19 11 2026 Gotówka 840.0 1
+1 6 11 2026 19 11 2026 Gotówka 840.0 1
 1
 Kia Sportage Samochód YV2TH60A4DB653450 0
 Klient
-Maria Lewandowska 8005 1200.0
+Maria Lewandowska 5 1200.0
 2
-5 7 11 2026 10 11 2026 Gotówka 480.0 1
+2 7 11 2026 10 11 2026 Gotówka 480.0 1
 2
 Volvo XC60 Samochód W0LGT8EC9A1044712 0
 Volkswagen Passat Samochód VF7RWRHF8AL526560 0
-7 10 11 2026 16 11 2026 Karta 420.0 0
+4 10 11 2026 16 11 2026 Karta 420.0 0
 1
 Yamaha YZF-R6 Motocykl 1FTRF3B68EEB02827 0
 Klient
-Edyta Szymczak 8006 0.0
+Edyta Szymczak 6 0.0
 1
-6 9 11 2026 12 11 2026 Karta 720.0 0
+3 9 11 2026 12 11 2026 Karta 720.0 0
 3
 Kawasaki Z900 Motocykl 3B7HC13Y81M508085 0
 Mazda 6 Samochód JT2BF22K6Y0245195 0
 Yamaha T135 Motorower 3FAHP0HAXCR461986 0
 Klient 
-Władysław Winnicki 8008 0.0
+Władysław Winnicki 8 0.0
 0
 Pojazd
 Yamaha MT-03 Motocykl JTLKT324140167852 1

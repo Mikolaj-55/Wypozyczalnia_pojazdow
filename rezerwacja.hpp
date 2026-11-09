@@ -33,6 +33,7 @@ class Rezerwacja
         bool getPotwierdzenie() const;
         void setPotwierdzenie(bool val);
 
+        void dodajPozycje(const PozycjaRezerwacji& pozycja);
         void print() const;
 };
 

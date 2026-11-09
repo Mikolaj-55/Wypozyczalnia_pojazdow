@@ -60,6 +60,12 @@ void SystemRezerwacji::setAktywne_rezerwacje(const std::vector<Rezerwacja>& val)
 }
 
 void SystemRezerwacji::dodajPojazd(const Pojazd& pojazd){
+    for (const auto& p : katalog_pojazdow){
+        if(p.getNumer_vin()==pojazd.getNumer_vin()){
+            cout<<"Pojazd o takim numerze VIN już istnieje!\n";
+            return;
+        }
+    }
     katalog_pojazdow.push_back(pojazd);
 }
 
@@ -108,7 +114,7 @@ void SystemRezerwacji::zatwierdzRezerwacje(int id_pracownik, const Rezerwacja& r
         }
         docelowyKlient->setLista_rezerwacji(lista);
     }
-    
+
 }
 
 bool SystemRezerwacji::zamknijRezerwacje(int id_pracownik, int id_klient, const Rezerwacja& rezerwacja)
@@ -318,7 +324,7 @@ void SystemRezerwacji::menuKlient(Klient klient){
 }
 
 void SystemRezerwacji::menu()
-{   
+{
     bool petla = true;
     while(petla){
         int user;
@@ -330,7 +336,7 @@ void SystemRezerwacji::menu()
         switch (user)
         {
         case 1:
-            cout << "Podaj id klienta:" << endl; 
+            cout << "Podaj id klienta:" << endl;
             std::cin >> id;
             {
                 Klient* znalezionyKlient = znajdzKlienta(id);
@@ -342,7 +348,7 @@ void SystemRezerwacji::menu()
                 }
             }
             break;
-        
+
         case 2:
             cout << "Podaj id pracownika:" << endl;
             std::cin >> id;
@@ -372,7 +378,7 @@ bool SystemRezerwacji::zarezerwuj(int id_klient, const Date& data, int okres, co
     int d = data.getDay() + okres;
     int m = data.getMonth();
     int r = data.getYear();
-    
+
     while (d > 30) {
         d -= 30;
         m++;
@@ -425,7 +431,7 @@ void SystemRezerwacji::wybierzPojazd(const std::string& numer_vin, int id_pojazd
     {
         bool podmenu = true;
         while(podmenu){
-            cout << "\n--- ZARZĄDZANIE POJAZDEM ---\n";
+            cout << "\n=== ZARZĄDZANIE POJAZDEM ===\n";
             wybranyPojazd->print();
             cout << "\n 1. Zmień status dostępności\n 2. Usuń ten pojazd\n 0. Powrót\n Wybierz: ";
             int opcjaPojazdu;
@@ -483,3 +489,51 @@ void SystemRezerwacji::wybierzPojazd(const std::string& numer_vin, int id_pojazd
     }
 }
 
+void SystemRezerwacji::dodajRezerwacje(const Rezerwacja& rezerwacja)
+{
+    for (const auto& r : aktywne_rezerwacje){
+        if(r.getId_rezerwacji()==rezerwacja.getId_rezerwacji()){
+            cout<<"Rezerwacja o takim ID już istnieje!\n";
+            return;
+        }
+    }
+    aktywne_rezerwacje.push_back(rezerwacja);
+}
+
+void SystemRezerwacji::dodajPracownika(const PracownikObslugi& pracownik)
+{
+    for (const auto& p : lista_pracownikow){
+        if(p.getId_pracownik()==pracownik.getId_pracownik()){
+            cout<<"Pracownik o takim ID już istnieje!\n";
+            return;
+        }
+        if(p.getId()==pracownik.getId()){
+            cout<<"Osoba o takim ID już istnieje!\n";
+            return;
+        }
+    }
+    for (const auto& k : lista_klientow){
+        if(k.getId()==pracownik.getId()){
+            cout<<"Osoba o takim ID już istnieje!\n";
+            return;
+        }
+    }
+    lista_pracownikow.push_back(pracownik);
+}
+
+void SystemRezerwacji::dodajKlienta(const Klient& klient)
+{
+    for (const auto& p : lista_pracownikow){
+        if(p.getId()==klient.getId()){
+            cout<<"Osoba o takim ID już istnieje!\n";
+            return;
+        }
+    }
+    for (const auto& k : lista_klientow){
+        if(k.getId()==klient.getId()){
+            cout<<"Osoba o takim ID już istnieje!\n";
+            return;
+        }
+    }
+    lista_klientow.push_back(klient);
+}
