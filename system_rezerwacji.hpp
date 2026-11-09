@@ -46,6 +46,9 @@ class SystemRezerwacji
         void zatwierdzRezerwacje(int id_pracownik, const Rezerwacja& rezerwacja);
         bool zamknijRezerwacje(int id_pracownik, int id_klient, const Rezerwacja& rezerwacja);
         void naliczKare(int id_pracownik, int id_klient, double kwota);
+        void dodajRezerwacje(const Rezerwacja& rezerwacja);
+        void dodajPracownika(const PracownikObslugi& pracownik);
+        void dodajKlienta(const Klient& klient);
 };
 
 #endif // SYSTEMREZERWACJI_HPP

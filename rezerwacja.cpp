@@ -67,6 +67,17 @@ void Rezerwacja::setPotwierdzenie(bool val)
     potwierdzenie=val;
 }
 
+void Rezerwacja::dodajPozycje(const PozycjaRezerwacji& pozycja)
+{
+    for (const auto& p : pozycje){
+        if(p.getPojazd().getNumer_vin()==pozycja.getPojazd().getNumer_vin()){
+            cout<<"Ten pojazd zosta³ ju¿ dodany do rezerwacji!\n";
+            return;
+        }
+    }
+    pozycje.push_back(pozycja);
+}
+
 
 void Rezerwacja::print() const
 {
@@ -75,9 +86,9 @@ void Rezerwacja::print() const
     cout<<endl<<"Data zwrotu: ";
     data_zwrotu.print();
     cout<<endl<<"Pozycje:";
-    for(const auto& x : pozycje){
+    for(const auto& p : pozycje){
         std::cout<<std::endl<<endl;
-        x.getPojazd().print();
+        p.getPojazd().print();
     }
     cout<<endl<<endl<<"Platnosc:"<<endl;
     platnosc.print();
