@@ -53,7 +53,7 @@ bool wczytaj_dane(SystemRezerwacji& SR, const string& nazwa_pliku){
                     bool dostepnosc;
                     plik>>marka>>model>>typ>>numer_vin>>dostepnosc;
                     Pojazd p=Pojazd(marka,model,typ,numer_vin,dostepnosc);
-                    SR.dodajPojazd(0,p);
+                    SR.dodajPojazd(p);
                     //metoda na dodanie pozycji rezerwacji do listy klasy Rezerwacja PozycjaRezerwacji(p);
                 }
                 SR.dodajRezerwacje(r);
