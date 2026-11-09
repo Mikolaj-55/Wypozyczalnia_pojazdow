@@ -78,7 +78,6 @@ int main()
     SR.menu();
 
 
-    SR.menu();
     /*
     //TEST PRINT�W
     Date dd =Date(1,4,77);
