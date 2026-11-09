@@ -180,7 +180,7 @@ void SystemRezerwacji::menuPracownik(int id_pracownik){
         int choice;
         std::cout<<endl;
         std::cout<<"Menu rezerwacji - Widok Pracownika"<<endl;
-        std::cout<<" 1. Wyświetl Pojazdy \n 2. Dodaj Pojazd \n 3. Usuń Pojazd \n 4. Wyświetl listę rezerwacji \n 0. Wyjdź";
+        std::cout<<" 1. Wyświetl Pojazdy \n 2. Dodaj Pojazd \n 3. Usuń Pojazd \n 4. Wyświetl listę rezerwacji \n 0. Wyjdź\n";
         std::cin>>choice;
         string marka, model, typ, numer_vin;
         switch(choice){
@@ -269,7 +269,7 @@ void SystemRezerwacji::menuKlient(Klient klient){
         int choice;
         std::cout<<endl;
         std::cout<<"Menu rezerwacji - Widok Pracownika"<<endl;
-        std::cout<<" 1. Wyświetl dostępne pojazdy \n 2. Wyświetl listę rezerwacji \n 0. Wyjdź";
+        std::cout<<" 1. Wyświetl dostępne pojazdy \n 2. Wyświetl listę rezerwacji \n 0. Wyjdź \n";
         std::cin>>choice;
         switch(choice){
             case 1:{
@@ -296,7 +296,6 @@ void SystemRezerwacji::menuKlient(Klient klient){
                     int indeks_temp = dostepne[wybor-1];
                     wybierzPojazd(katalog_pojazdow[indeks_temp].getNumer_vin(), indeks_temp, false, klient.getId());
                 }
-                wybierzPojazd(katalog_pojazdow[wybor-1].getNumer_vin(),wybor, false, klient.getId());
                 break;}
             case 2:{
                 std::cout << "\n=== Twoje rezerwacje ===\n";
@@ -329,7 +328,7 @@ void SystemRezerwacji::menu()
     while(petla){
         int user;
         cout<<"Menu rezerwacji"<<endl;
-        cout<<"1. Klient"<<endl<<" 2. Pracownik"<<endl<<"0. Zakończ";
+        cout<<"1. Klient"<<endl<<" 2. Pracownik"<<endl<<"0. Zakończ \n";
         std::cin>>user;
         int id;
         Klient klient;
@@ -461,7 +460,7 @@ void SystemRezerwacji::wybierzPojazd(const std::string& numer_vin, int id_pojazd
         return;
     }
     if (!pracownik){
-        if (wybranyPojazd->getDostepnosc()) {
+        if (!wybranyPojazd->getDostepnosc()) {
         cout << "Błąd: Wybrany pojazd jest niedostępny!\n";
         return;
         }
