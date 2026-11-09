@@ -26,7 +26,7 @@ bool wczytaj_dane(SystemRezerwacji& SR, const string& nazwa_pliku){
             string marka, model, typ, numer_vin;
             bool dostepnosc;
             plik>>marka>>model>>typ>>numer_vin>>dostepnosc;
-            SR.dodajPojazd(0,Pojazd(marka,model,typ,numer_vin,dostepnosc));
+            SR.dodajPojazd(Pojazd(marka,model,typ,numer_vin,dostepnosc));
         }
         if(klasa=="Pracownik_obslugi"){
             string imie, nazwisko;
@@ -53,7 +53,7 @@ bool wczytaj_dane(SystemRezerwacji& SR, const string& nazwa_pliku){
                     bool dostepnosc;
                     plik>>marka>>model>>typ>>numer_vin>>dostepnosc;
                     Pojazd p=Pojazd(marka,model,typ,numer_vin,dostepnosc);
-                    SR.dodajPojazd(0,p);
+                    SR.dodajPojazd(p);
                     //metoda na dodanie pozycji rezerwacji do listy klasy Rezerwacja PozycjaRezerwacji(p);
                 }
                 //metoda na dodanie rezerwacji r do listy aktywnych rezerwacji w systemie rezerwacji
@@ -76,8 +76,10 @@ int main()
     SR.setStawka_dniowa(60);
     if(!wczytaj_dane(SR, "dane.txt")){return 1;}
 
+
+    SR.menu();
     /*
-    //TEST PRINTÓW
+    //TEST PRINTï¿½W
     Date dd =Date(1,4,77);
     Date dy =Date(1,5,77);
     Platnosc pl=Platnosc("gotowka",10.67);
