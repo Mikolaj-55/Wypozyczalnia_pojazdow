@@ -254,8 +254,13 @@ void SystemRezerwacji::menuPracownik(int id_pracownik){
                 int nrRez;
                 std::cin >> nrRez;
                 if (nrRez > 0 && nrRez <= aktywne_rezerwacje.size()) {
-                    zatwierdzRezerwacje(id_pracownik, aktywne_rezerwacje[nrRez-1]);
-                    std::cout << "Rezerwacja została zatwierdzona.\n";
+                    if(!aktywne_rezerwacje[nrRez-1].getPotwierdzenie()){
+                        zatwierdzRezerwacje(id_pracownik, aktywne_rezerwacje[nrRez-1]);
+                        std::cout << "Rezerwacja została zatwierdzona.\n";
+                    }else{
+                        cout << "Rezerwacja jest już potwierdzona. \n";
+                    }
+                    
                 }
                 break;}
             case 0:{
