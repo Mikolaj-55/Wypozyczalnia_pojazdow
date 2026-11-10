@@ -30,10 +30,10 @@ bool wczytaj_dane(SystemRezerwacji& SR, const string& nazwa_pliku){
         }
         if(klasa=="Pracownik_obslugi"){
             string imie, nazwisko;
-            int id, id_pracownik, dzien, miesiac, rok;
+            int id, dzien, miesiac, rok;
             double pensja;
-            plik>>imie>>nazwisko>>id>>id_pracownik>>dzien>>miesiac>>rok>>pensja;
-            SR.dodajPracownika(PracownikObslugi(imie,nazwisko,id,id_pracownik,Date(dzien,miesiac,rok),pensja));
+            plik>>imie>>nazwisko>>id>>dzien>>miesiac>>rok>>pensja;
+            SR.dodajPracownika(PracownikObslugi(imie,nazwisko,id,Date(dzien,miesiac,rok),pensja));
         }
         if(klasa=="Klient"){
             string imie, nazwisko;

@@ -1,9 +1,9 @@
 Pracownik_obslugi
-Jan Kowalski 1 1 8 3 2021 6200.0
+Jan Kowalski 1 8 3 2021 6200.0
 Pracownik_obslugi
-Anna Nowak 2 2 12 4 2021 5800.0
+Anna Nowak 2 12 4 2021 5800.0
 Pracownik_obslugi
-Piotr Wiśniewski 7 3 16 10 2025 4300.0
+Piotr Wiśniewski 7 16 10 2025 4300.0
 Klient
 Katarzyna Wójcik 3 0.0
 0
