@@ -84,9 +84,13 @@ bool SystemRezerwacji::usunPojazd(const std::string& numer_vin)
 void SystemRezerwacji::zatwierdzRezerwacje(int id_pracownik, const Rezerwacja& rezerwacja)
 {
     if (!czyPracownik(id_pracownik)) return;
-
+    
     for (auto& rez : aktywne_rezerwacje) {
         if (rez.getId_rezerwacji() == rezerwacja.getId_rezerwacji()) {
+            if(rez.getPotwierdzenie()){
+                cout<<" Podana rezerwacja jest już zatwierdzona. "<<endl;
+                return;
+            }
             rez.setPotwierdzenie(true);
             break;
         }
