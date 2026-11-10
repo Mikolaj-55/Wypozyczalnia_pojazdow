@@ -36,7 +36,7 @@ class SystemRezerwacji
         Klient* znajdzKlienta(int id);
         bool czyPracownik(int id);
         void menuPracownik(int id_pracownik);
-        void menuKlient(Klient klient);
+        void menuKlient(Klient& klient);
 
         void menu();
         bool zarezerwuj(int id_klient, const Date& data, int okres, const std::string& metoda, PozycjaRezerwacji pojazd);

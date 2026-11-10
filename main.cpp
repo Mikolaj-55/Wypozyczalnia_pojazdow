@@ -54,7 +54,7 @@ bool wczytaj_dane(SystemRezerwacji& SR, const string& nazwa_pliku){
                     plik>>marka>>model>>typ>>numer_vin>>dostepnosc;
                     Pojazd p=Pojazd(marka,model,typ,numer_vin,dostepnosc);
                     SR.dodajPojazd(p);
-                    //metoda na dodanie pozycji rezerwacji do listy klasy Rezerwacja PozycjaRezerwacji(p);
+                    r.dodajPozycje(PozycjaRezerwacji(p));
                 }
                 SR.dodajRezerwacje(r);
                 k.dodajRezerwacje(r);
@@ -71,7 +71,7 @@ int main()
 
     SetConsoleOutputCP(CP_UTF8);
     SetConsoleCP(CP_UTF8);
-
+    
     SystemRezerwacji SR=SystemRezerwacji();
     SR.setStawka_dniowa(60);
     if(!wczytaj_dane(SR, "dane.txt")){return 1;}

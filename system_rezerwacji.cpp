@@ -265,7 +265,7 @@ void SystemRezerwacji::menuPracownik(int id_pracownik){
     }
 }
 
-void SystemRezerwacji::menuKlient(Klient klient){
+void SystemRezerwacji::menuKlient(Klient& klient){
     bool petla = true;
     while(petla){
         int choice;
@@ -364,7 +364,7 @@ void SystemRezerwacji::menu()
             petla = false;
             break;
         default:
-            cout<<"Zła opcja podaj poprawną";
+            cout<<"Zła opcja podaj poprawną"<<endl;
             break;
         }
     }

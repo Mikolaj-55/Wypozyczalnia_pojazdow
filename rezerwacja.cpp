@@ -71,7 +71,7 @@ void Rezerwacja::dodajPozycje(const PozycjaRezerwacji& pozycja)
 {
     for (const auto& p : pozycje){
         if(p.getPojazd().getNumer_vin()==pozycja.getPojazd().getNumer_vin()){
-            cout<<"Ten pojazd zosta� ju� dodany do rezerwacji!\n";
+            cout<<"Ten pojazd został już dodany do rezerwacji!\n";
             return;
         }
     }
