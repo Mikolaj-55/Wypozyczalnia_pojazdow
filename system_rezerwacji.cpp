@@ -340,22 +340,7 @@ void SystemRezerwacji::menuKlient(Klient& klient){
                 }
                 if (dostepne.empty()) {
                     std::cout << "Brak dostępnych pojazdów w tej chwili.\n";
-                    break;
                 }
-                /*
-                std::cout<<" Wybierz numer pojazdu z listy, lub 0 aby anulować ";
-                int wybor;
-                std::cin>>wybor;
-                if(wybor > 0 && klient.getKary() > 0){
-                    std::cout << "Nie można złożyć wypożyczenia! Musisz najpierw zapłacić kary!\n";
-                    break;
-                }
-                std::cout<<endl;
-                if(wybor > 0 && wybor<= dostepne.size()){
-                    int indeks_temp = dostepne[wybor-1];
-                    wybierzPojazd(katalog_pojazdow[indeks_temp].getNumer_vin(), indeks_temp, false, klient.getId());
-                }
-                    */
                 break;}
             case 2:{
                 if(klient.getKary() > 0){

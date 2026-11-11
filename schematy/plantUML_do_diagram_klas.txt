@@ -1,0 +1,85 @@
+@startuml
+class Osoba {
+    - imie: string
+    - nazwisko: string
+    - id: int
+}
+
+class PracownikObslugi {
+    - data_zatrudnienia: Date
+    - pensja: double
+}
+
+class Klient {
+    - lista_rezerwacji: vector<<Rezerwacja>
+    - kary: double
+    + dodajRezerwacje(rezerwacja: const Rezerwacja&): void
+    + usunRezerwacje(id_rezerwacji: int): bool
+    + dodajKare(kara: double): void
+}
+
+class SystemRezerwacji {
+    - stawka_dniowa: double
+    - lista_pracownikow: vector<<PracownikObslugi>
+    - lista_klientow: vector<<Klient>
+    - katalog_pojazdow: vector<<Pojazd>
+    - aktywne_rezerwacje: vector<<Rezerwacja>
+
+    + znajdzKlienta(id: int): Klient*
+    + czyPracownik(id: int): bool
+    + menuPracownik(id_pracownik: int): void
+    + menuKlient(klient: Klient&): void
+    + menu(): void
+    + zarezerwuj(id_klient: int, data: const Date&, okres: int, metoda: const string&, pozycje: const vector<PozycjaRezerwacji>&): bool
+    + wybierzPojazd(numer_vin: const string&, pracownik: bool): void
+    + dodajPojazd(pojazd: const Pojazd&): bool
+    + usunPojazd(numer_vin: const string&): bool
+    + zatwierdzRezerwacje(id_pracownik: int, rezerwacja: const Rezerwacja&): void
+    + zamknijRezerwacje(id_pracownik: int, id_klient: int, rezerwacja: const Rezerwacja&): bool
+    + naliczKare(id_pracownik: int, id_klient: int, kwota: double): void
+}
+
+class Pojazd {
+    - marka: string
+    - model: string
+    - typ: string
+    - numer_vin: string
+    - dostepnosc: bool
+    + print(): void
+}
+
+class Platnosc {
+    - metoda: string
+    - koszt: double
+    + print(): void
+}
+
+class Rezerwacja {
+    - id_rezerwacji: int
+    - data_rezerwacji: Date
+    - data_zwrotu: Date
+    - pozycje: vector<<PozycjaRezerwacji>
+    - platnosc: Platnosc
+    - potwierdzenie: bool
+    + print(): void
+}
+
+class PozycjaRezerwacji {
+    - pojazd: Pojazd
+}
+Osoba <|-- PracownikObslugi
+Osoba <|-- Klient
+
+SystemRezerwacji "1" o-- "*" PracownikObslugi
+SystemRezerwacji "1" o-- "*" Klient
+SystemRezerwacji "1" o-- "*" Pojazd
+SystemRezerwacji "1" -- "*" Rezerwacja
+
+Klient "1" *-- "*" Rezerwacja
+
+Rezerwacja "1" *-- "1" Platnosc
+Rezerwacja "1" *-- "*" PozycjaRezerwacji
+
+Pojazd "1" -- "1" PozycjaRezerwacji
+
+@enduml
