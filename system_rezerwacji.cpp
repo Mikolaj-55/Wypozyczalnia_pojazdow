@@ -249,19 +249,64 @@ void SystemRezerwacji::menuPracownik(int id_pracownik){
                     aktywne_rezerwacje[i].print();
                     std::cout << "--------------------------------\n";
                 }
-
-                std::cout << "Podaj numer rezerwacji do zatwierdzenia (0 aby pominąć): ";
-                int nrRez;
-                std::cin >> nrRez;
-                if (nrRez > 0 && nrRez <= aktywne_rezerwacje.size()) {
-                    if(!aktywne_rezerwacje[nrRez-1].getPotwierdzenie()){
-                        zatwierdzRezerwacje(id_pracownik, aktywne_rezerwacje[nrRez-1]);
-                        std::cout << "Rezerwacja została zatwierdzona.\n";
-                    }else{
-                        cout << "Rezerwacja jest już potwierdzona. \n";
+                cout<<endl<<" 1. Zatwierdzenie rezerwacji \n 2. Zamknięcie rezerwacji \n 3. Dodaj Karę \n 0. Wyjdź"<<endl;
+                int opcja, nrRez;
+                cin>>opcja;
+                if(opcja==1){
+                    std::cout << "\nPodaj numer rezerwacji do zatwierdzenia (0 aby cofnąć): ";
+                    std::cin >> nrRez;
+                    if (nrRez > 0 && nrRez <= aktywne_rezerwacje.size()) {
+                        if(!aktywne_rezerwacje[nrRez-1].getPotwierdzenie()){
+                            zatwierdzRezerwacje(id_pracownik, aktywne_rezerwacje[nrRez-1]);
+                            std::cout << "Rezerwacja została zatwierdzona.\n";
+                        }else{
+                            cout << "Rezerwacja jest już potwierdzona. \n";
+                        }
+                        
                     }
-                    
+                }else if(opcja==2){
+                    cout<< "\nPodaj numer rezerwacji do dodania kary (0 aby cofnąć): ";
+                    cin>>nrRez;
+                    if (nrRez > 0 && nrRez <= aktywne_rezerwacje.size()) {
+                        cout<<" \n Podaj kwotę kary :";
+                        int kara;
+                        cin>>kara;
+                        Klient* docelowyKlient = nullptr;
+                        Rezerwacja& rezerwacja = aktywne_rezerwacje[nrRez-1];
+                        for (auto& klient : lista_klientow) {
+                            const auto& listaRezerwacjiKlienta = klient.getLista_rezerwacji();
+                            for (const auto& rez : listaRezerwacjiKlienta) {
+                                if (rez.getId_rezerwacji() == rezerwacja.getId_rezerwacji()) {
+                                    docelowyKlient = &klient;
+                                    zamknijRezerwacje(id_pracownik,docelowyKlient->getId(),rez);
+                                    cout<<"\n ZAMKNIĘTO REZERWACJE "<<endl;
+                                }
+                            }
+                        }
+                    }
+                
+                }else if(opcja==3){
+                    cout<< "\nPodaj numer rezerwacji do dodania kary (0 aby cofnąć): ";
+                    cin>>nrRez;
+                    if (nrRez > 0 && nrRez <= aktywne_rezerwacje.size()) {
+                        cout<<" \n Podaj kwotę kary :";
+                        int kara;
+                        cin>>kara;
+                        Klient* docelowyKlient = nullptr;
+                        Rezerwacja& rezerwacja = aktywne_rezerwacje[nrRez-1];
+                        for (auto& klient : lista_klientow) {
+                            const auto& listaRezerwacjiKlienta = klient.getLista_rezerwacji();
+                            for (const auto& rez : listaRezerwacjiKlienta) {
+                                if (rez.getId_rezerwacji() == rezerwacja.getId_rezerwacji()) {
+                                    docelowyKlient = &klient;
+                                    docelowyKlient->dodajKare(kara);
+                                    cout<<" Dodano karę do klienta: "<<docelowyKlient->getImie()<<" "<<docelowyKlient->getNazwisko()<<endl;
+                                }
+                            }
+    }
                 }
+                }
+                
                 break;}
             case 0:{
                 petla=false;
