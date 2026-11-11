@@ -1,0 +1,61 @@
+@startuml
+autonumber
+
+
+title "Diagram sekwencji dla zatwierdzenia rezerwacji przez pracownika obsługi"
+
+actor "Pracownik Obsługi" as Pracownik
+participant "SystemRezerwacji" as SR
+participant "Rezerwacja" as Rez
+participant "Klient" as Klient
+
+Pracownik -> SR: menuPracownik(id_pracownik)
+activate SR
+
+note right of SR: Wybór opcji 4 (Lista rezerwacji) \n-> Opcja 1 (Zatwierdzenie)
+
+SR -> SR: czyPracownik(id_pracownik)
+activate SR
+SR --> SR: true / false
+deactivate SR
+
+alt Pracownik zweryfikowany pozytywnie
+    SR -> Rez: getPotwierdzenie()
+    activate Rez
+    Rez --> SR: potwierdzenie (false)
+    deactivate Rez
+    
+    SR -> Rez: setPotwierdzenie(true)
+    activate Rez
+    deactivate Rez
+    
+    note over SR: Wyszukiwanie klienta powiązanego z rezerwacją
+    loop Dla każdego klienta w lista_klientow
+        SR -> Klient: getLista_rezerwacji()
+        activate Klient
+        Klient --> SR: wektor rezerwacji klienta
+        deactivate Klient
+    end
+    
+    alt Znaleziono docelowego klienta
+        SR -> Klient: getLista_rezerwacji()
+        activate Klient
+        Klient --> SR: lista rezerwacji
+        deactivate Klient
+        
+        SR -> Klient: setLista_rezerwacji(zaktualizowana lista)
+        activate Klient
+        deactivate Klient
+        
+        note right of Klient: Status potwierdzenia zmieniony\nna true w profilu klienta
+    end
+    
+    SR --> Pracownik: Komunikat: "Rezerwacja została zatwierdzona."
+
+else Pracownik niezweryfikowany
+    SR --> Pracownik: Przerwanie operacji (return)
+end
+
+deactivate SR
+hide footbox
+@enduml
