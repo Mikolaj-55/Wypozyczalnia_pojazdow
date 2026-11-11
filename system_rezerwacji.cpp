@@ -206,7 +206,7 @@ void SystemRezerwacji::menuPracownik(int id_pracownik){
                 int wybor;
                 std::cin>>wybor;
                 if(wybor > 0 && wybor <= katalog_pojazdow.size()) {
-                    wybierzPojazd(katalog_pojazdow[wybor-1].getNumer_vin(),wybor, true, id_pracownik);
+                    wybierzPojazd(katalog_pojazdow[wybor-1].getNumer_vin(),true);
                 }
                 break;
             }
@@ -323,7 +323,7 @@ void SystemRezerwacji::menuKlient(Klient& klient){
         int choice;
         std::cout<<endl;
         std::cout<<"Menu rezerwacji - Widok Klienta"<<endl;
-        std::cout<<" 1. Wyświetl dostępne pojazdy \n 2. Wyświetl listę rezerwacji \n 3. Wyświetl nałożone kary \n 0. Wyjdź \n";
+        std::cout<<" 1. Wyświetl dostępne pojazdy \n 2. Złóż rezerwację \n 3. Wyświetl listę rezerwacji \n 4. Wyświetl nałożone kary \n 0. Wyjdź \n";
         std::cin>>choice;
         switch(choice){
             case 1:{
@@ -342,6 +342,7 @@ void SystemRezerwacji::menuKlient(Klient& klient){
                     std::cout << "Brak dostępnych pojazdów w tej chwili.\n";
                     break;
                 }
+                /*
                 std::cout<<" Wybierz numer pojazdu z listy, lub 0 aby anulować ";
                 int wybor;
                 std::cin>>wybor;
@@ -354,8 +355,82 @@ void SystemRezerwacji::menuKlient(Klient& klient){
                     int indeks_temp = dostepne[wybor-1];
                     wybierzPojazd(katalog_pojazdow[indeks_temp].getNumer_vin(), indeks_temp, false, klient.getId());
                 }
+                    */
                 break;}
             case 2:{
+                if(klient.getKary() > 0){
+                    std::cout << "Nie można złożyć rezerwacji! Musisz najpierw zapłacić kary!\n";
+                    break;}
+                vector<int> dostepne;
+                int n = katalog_pojazdow.size();
+                for(int i =0 ; i<n; i++){
+                    if(katalog_pojazdow[i].getDostepnosc()) {
+                        dostepne.push_back(i);
+                    }
+                }
+                if (dostepne.empty()) {
+                    std::cout << "Brak dostępnych pojazdów w tej chwili.\n";
+                    break;
+                }
+                int dzien, miesiac, rok, okres;
+                string metoda;
+                cout<<" \n === Formularz rezewacji === \n";
+                cout << "Podaj datę rozpoczęcia (dzień miesiąc rok, np. 15 6 2026): ";
+                std::cin >> dzien >> miesiac >> rok;
+                Date dataRezerwacji(dzien, miesiac, rok);
+
+                cout << "Podaj okres rezerwacji (liczba dni): ";
+                std::cin >> okres;
+
+                cout << "Podaj metodę płatności (np. gotowka, karta): ";
+                std::cin >> metoda;
+                vector<PozycjaRezerwacji> pozycje={};
+                int m=dostepne.size();
+                int wybor=1;
+                while(wybor!=0){
+                    std::cout<<"\n DOSTĘPNE POJAZDY \n";
+                    for(int i=0;i<m;i++){
+                        std::cout << i + 1 << ". ===\n";
+                        katalog_pojazdow[dostepne[i]].print();
+                        std::cout << endl;
+                    }
+                    std::cout<<"\nWybierz numer pojazdu z listy, lub 0 aby anulować.\nJeśli to ostatni pojazd, który chcesz wybrać, wybierz -1\n";
+                    std::cin>>wybor;
+                    std::cout<<endl;
+                    if(wybor > 0 && wybor<= m){
+                        int indeks_temp = dostepne[wybor-1];
+                        const string& numer_vin=katalog_pojazdow[indeks_temp].getNumer_vin();
+                        bool czy_juz_wybrany=false;
+                        int k=pozycje.size();
+                            for(const auto& p : pozycje){
+                                if(p.getPojazd().getNumer_vin()==numer_vin){
+                                    std::cout<<"Ten pojazd został już wybrany!\n";
+                                    czy_juz_wybrany=true;
+                                    break;
+                                }
+                            }
+                        if(!czy_juz_wybrany){
+                            PozycjaRezerwacji pozycja(katalog_pojazdow[indeks_temp]);
+                            pozycje.push_back(pozycja);
+                        }
+                    }
+                    if(wybor==-1){
+                        if(pozycje.empty()){
+                        std::cout<<"Wybierz co najmniej jeden pojazd!\n";
+                        continue;
+                        }
+                        break;
+                    }
+                }
+                if(wybor==-1){
+                if (zarezerwuj(klient.getId(), dataRezerwacji, okres, metoda, pozycje)) {
+                        cout << "Sukces! Pojazdy zostały pomyślnie zarezerwowane.\n";
+                    } else {
+                        cout << "Błąd podczas tworzenia rezerwacji.\n";
+                    }
+                }
+                break;}
+            case 3:{
                 std::cout << "\n=== Twoje rezerwacje ===\n";
                 const auto& rezerwacjeKlienta = klient.getLista_rezerwacji();
                 if (rezerwacjeKlienta.empty()) {
@@ -367,7 +442,7 @@ void SystemRezerwacji::menuKlient(Klient& klient){
                     }
                 }
                 break;}
-            case 3:{
+            case 4:{
                 std::cout << "Twoje kary: " << klient.getKary() << endl;
                 break;}
             case 0:{
@@ -424,7 +499,7 @@ void SystemRezerwacji::menu(){
     }
 }
 
-bool SystemRezerwacji::zarezerwuj(int id_klient, const Date& data, int okres, const std::string& metoda, PozycjaRezerwacji pozycja){
+bool SystemRezerwacji::zarezerwuj(int id_klient, const Date& data, int okres, const std::string& metoda, const vector<PozycjaRezerwacji>& pozycje){
     Klient* klient = znajdzKlienta(id_klient);
     if (!klient) {
         return false;
@@ -450,7 +525,6 @@ bool SystemRezerwacji::zarezerwuj(int id_klient, const Date& data, int okres, co
 
     // id rezerwacji
     int idRezerwacji = aktywne_rezerwacje.size() + 1;
-    vector<PozycjaRezerwacji> pozycje = {pozycja};
 
 
     Rezerwacja nowaRezerwacja(idRezerwacji, data, dataZwrotu, pozycje, platnosc, false);
@@ -458,19 +532,19 @@ bool SystemRezerwacji::zarezerwuj(int id_klient, const Date& data, int okres, co
     aktywne_rezerwacje.push_back(nowaRezerwacja);
 
     klient->dodajRezerwacje(nowaRezerwacja);
-
-    string vinPojazdu = pozycja.getPojazd().getNumer_vin();
-    for (auto& p : katalog_pojazdow) {
-        if (p.getNumer_vin() == vinPojazdu) {
-            p.setDostepnosc(false);
-            break;
+    for(const auto& pozycja : pozycje){
+        string vinPojazdu = pozycja.getPojazd().getNumer_vin();
+        for (auto& p : katalog_pojazdow) {
+            if (p.getNumer_vin() == vinPojazdu) {
+                p.setDostepnosc(false);
+                break;
         }
     }
-
+    }
     return true;
 }
 
-void SystemRezerwacji::wybierzPojazd(const std::string& numer_vin, int id_pojazdu, bool pracownik, int osoba_id){
+void SystemRezerwacji::wybierzPojazd(const std::string& numer_vin, bool pracownik){
     Pojazd* wybranyPojazd = nullptr;
     for (auto& p : katalog_pojazdow) {
             if (p.getNumer_vin() == numer_vin) {
@@ -514,33 +588,6 @@ void SystemRezerwacji::wybierzPojazd(const std::string& numer_vin, int id_pojazd
         }
 
         return;
-    }
-    if (!pracownik){
-        if (!wybranyPojazd->getDostepnosc()) {
-        cout << "Błąd: Wybrany pojazd jest niedostępny!\n";
-        return;
-        }
-
-        int dzien, miesiac, rok, okres;
-        string metoda;
-        cout<<" \n === Formularz rezewacji === \n";
-        cout << "Podaj datę rozpoczęcia (dzień miesiąc rok, np. 15 6 2026): ";
-        std::cin >> dzien >> miesiac >> rok;
-        Date dataRezerwacji(dzien, miesiac, rok);
-
-        cout << "Podaj okres rezerwacji (liczba dni): ";
-        std::cin >> okres;
-
-        cout << "Podaj metodę płatności (np. gotowka, karta): ";
-        std::cin >> metoda;
-
-        PozycjaRezerwacji pozycja(*wybranyPojazd);
-
-        if (zarezerwuj(osoba_id, dataRezerwacji, okres, metoda, pozycja)) {
-            cout << "Sukces! Pojazd został pomyślnie zarezerwowany.\n";
-        } else {
-            cout << "Błąd podczas tworzenia rezerwacji.\n";
-    }
     }
 }
 

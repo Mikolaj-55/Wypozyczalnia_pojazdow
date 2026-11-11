@@ -39,8 +39,8 @@ class SystemRezerwacji
         void menuKlient(Klient& klient);
 
         void menu();
-        bool zarezerwuj(int id_klient, const Date& data, int okres, const std::string& metoda, PozycjaRezerwacji pojazd);
-        void wybierzPojazd(const std::string &numer_vin, int id_pojazdu, bool pracownik, int osoba_id);
+        bool zarezerwuj(int id_klient, const Date& data, int okres, const std::string& metoda, const std::vector<PozycjaRezerwacji>& pozycje);
+        void wybierzPojazd(const std::string &numer_vin, bool pracownik);
         bool dodajPojazd(const Pojazd& pojazd);
         bool usunPojazd(const std::string& numer_vin);
         void zatwierdzRezerwacje(int id_pracownik, const Rezerwacja& rezerwacja);
