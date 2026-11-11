@@ -279,7 +279,7 @@ void SystemRezerwacji::menuPracownik(int id_pracownik){
                             }
                         }
                         zamknijRezerwacje(id_pracownik,docelowyKlient->getId(),rezerwacja);
-                        cout<<"\n ZAMKNIĘTO REZERWACJE "<<rezerwacja.getId_rezerwacji()<<endl;
+                        cout<<"\nZAMKNIĘTO REZERWACJE "<<rezerwacja.getId_rezerwacji()<<endl;
                         aktywne_rezerwacje.erase(aktywne_rezerwacje.begin()+nrRez-1);
                     }
                 
@@ -323,7 +323,7 @@ void SystemRezerwacji::menuKlient(Klient& klient){
         int choice;
         std::cout<<endl;
         std::cout<<"Menu rezerwacji - Widok Klienta"<<endl;
-        std::cout<<" 1. Wyświetl dostępne pojazdy \n 2. Wyświetl listę rezerwacji \n 0. Wyjdź \n";
+        std::cout<<" 1. Wyświetl dostępne pojazdy \n 2. Wyświetl listę rezerwacji \n 3. Wyświetl nałożone kary \n 0. Wyjdź \n";
         std::cin>>choice;
         switch(choice){
             case 1:{
@@ -345,6 +345,10 @@ void SystemRezerwacji::menuKlient(Klient& klient){
                 std::cout<<" Wybierz numer pojazdu z listy, lub 0 aby anulować ";
                 int wybor;
                 std::cin>>wybor;
+                if(wybor > 0 && klient.getKary() > 0){
+                    std::cout << "Nie można złożyć wypożyczenia! Musisz najpierw zapłacić kary!\n";
+                    break;
+                }
                 std::cout<<endl;
                 if(wybor > 0 && wybor<= dostepne.size()){
                     int indeks_temp = dostepne[wybor-1];
@@ -362,8 +366,9 @@ void SystemRezerwacji::menuKlient(Klient& klient){
                         std::cout << "\n---------------------------\n";
                     }
                 }
-
-                
+                break;}
+            case 3:{
+                std::cout << "Twoje kary: " << klient.getKary() << endl;
                 break;}
             case 0:{
                 petla=false;
