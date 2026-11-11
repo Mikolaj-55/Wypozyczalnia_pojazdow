@@ -333,13 +333,12 @@ void SystemRezerwacji::menuKlient(Klient& klient){
     }
 }
 
-void SystemRezerwacji::menu()
-{
+void SystemRezerwacji::menu(){
     bool petla = true;
     while(petla){
         int user;
         cout<<"Menu rezerwacji"<<endl;
-        cout<<"1. Klient"<<endl<<" 2. Pracownik"<<endl<<"0. Zakończ \n";
+        cout<<"1. Klient"<<endl<<"2. Pracownik"<<endl<<"0. Zakończ \n";
         std::cin>>user;
         int id;
         Klient klient;
@@ -351,7 +350,6 @@ void SystemRezerwacji::menu()
             {
                 Klient* znalezionyKlient = znajdzKlienta(id);
                 if (znalezionyKlient != nullptr) {
-                    petla = false;
                     menuKlient(*znalezionyKlient);
                 } else {
                     cout << "Nie znaleziono klienta o podanym ID!" << endl;
@@ -363,7 +361,6 @@ void SystemRezerwacji::menu()
             cout << "Podaj id pracownika:" << endl;
             std::cin >> id;
             if (czyPracownik(id)) {
-                petla = false;
                 menuPracownik(id);
             } else {
                 cout << "Nie znaleziono pracownika o podanym ID!" << endl;
