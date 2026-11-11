@@ -287,7 +287,7 @@ void SystemRezerwacji::menuPracownik(int id_pracownik){
                     cout<< "\nPodaj numer rezerwacji do dodania kary (0 aby cofnąć): ";
                     cin>>nrRez;
                     if (nrRez > 0 && nrRez <= aktywne_rezerwacje.size()) {
-                        cout<<" \n Podaj kwotę kary :";
+                        cout<<" \n Podaj kwotę kary: ";
                         int kara;
                         cin>>kara;
                         Klient* docelowyKlient = nullptr;
@@ -386,7 +386,6 @@ void SystemRezerwacji::menuKlient(Klient& klient){
                         int indeks_temp = dostepne[wybor-1];
                         const string& numer_vin=katalog_pojazdow[indeks_temp].getNumer_vin();
                         bool czy_juz_wybrany=false;
-                        int k=pozycje.size();
                             for(const auto& p : pozycje){
                                 if(p.getPojazd().getNumer_vin()==numer_vin){
                                     std::cout<<"Ten pojazd został już wybrany!\n";
@@ -526,7 +525,7 @@ bool SystemRezerwacji::zarezerwuj(int id_klient, const Date& data, int okres, co
     Date dataZwrotu(d, m, r);
 
     // koszt na podstawie stawki dziennej
-    double koszt = okres * stawka_dniowa;
+    double koszt = okres * stawka_dniowa * pozycje.size();
     Platnosc platnosc(metoda, koszt);
 
     // id rezerwacji
