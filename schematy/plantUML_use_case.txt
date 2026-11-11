@@ -1,0 +1,54 @@
+@startuml
+left to right direction
+skinparam packageStyle rectangle
+
+actor "Klient" as Klient
+actor "Pracownik Obsługi" as Pracownik
+
+rectangle "System Rezerwacji Pojazdów" {
+    
+    ' Przypadki użycia dla Klienta
+    package "Panel Klienta" {
+        usecase "Wyświetl dostępne pojazdy" as UC_K1
+        usecase "Zarezerwuj pojazd" as UC_K2
+        usecase "Wyświetl listę rezerwacji" as UC_K3
+        usecase "Wyświetl nałożone kary" as UC_K4
+    }
+
+    ' Przypadki użycia dla Pracownika Obsługi
+    package "Panel Pracownika" {
+        usecase "Wyświetl katalog pojazdów" as UC_P1
+        usecase "Dodaj nowy pojazd" as UC_P2
+        usecase "Usuń pojazd z katalogu" as UC_P3
+        usecase "Zarządzaj wybranym pojazdem\n(Status / Usunięcie)" as UC_P4
+        usecase "Wyświetl aktywne rezerwacje" as UC_P5
+        usecase "Zatwierdź rezerwację" as UC_P6
+        usecase "Zamknij rezerwację" as UC_P7
+        usecase "Nalicz karę klientowi" as UC_P8
+    }
+}
+
+' Powiązania Klienta
+Klient --> UC_K1
+Klient --> UC_K2
+Klient --> UC_K3
+Klient --> UC_K4
+
+' Logika w Panelu Klienta
+UC_K2 ..> UC_K1 : <<include>>
+
+
+' Powiązania Pracownika
+Pracownik --> UC_P1
+Pracownik --> UC_P2
+Pracownik --> UC_P3
+Pracownik --> UC_P5
+
+' Logika w Panelu Pracownika
+UC_P1 <.. UC_P4 : <<extend>>
+UC_P1 <.. UC_P3 : <<extend>>
+UC_P5 <.. UC_P6 : <<extend>>
+UC_P5 <.. UC_P7 : <<extend>>
+UC_P5 <.. UC_P8 : <<extend>> 
+
+@enduml
