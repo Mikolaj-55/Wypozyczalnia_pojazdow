@@ -476,6 +476,27 @@ void SystemRezerwacji::menu(){
                     menuKlient(*znalezionyKlient);
                 } else {
                     cout << "Nie znaleziono klienta o podanym ID!" << endl;
+                    cout << "Wybierz 1 aby stworzyć nowe konto lub 0 aby anulować" << endl;
+                    bool wybor;
+                    cin>>wybor;
+                    if(wybor){
+                        int idKlient = 1;
+                        if(!lista_klientow.empty()){
+                            idKlient=lista_klientow.back().getId();
+                        }
+                        if(!lista_pracownikow.empty()){
+                            int ostatnie_id_pracownik=lista_pracownikow.back().getId();
+                            if(ostatnie_id_pracownik>idKlient){
+                                idKlient=ostatnie_id_pracownik;
+                            }
+                        }
+                        cout << "Podaj imię i nazwisko" << endl;
+                        string imie, nazwisko;
+                        cin>>imie>>nazwisko;
+                        Klient nowy_klient(imie, nazwisko, ++idKlient);
+                        lista_klientow.push_back(nowy_klient);
+                        cout << "Stworzono klienta " << imie << " " << nazwisko << " o id " << idKlient << endl;
+                    }
                 }
             }
             break;
@@ -524,10 +545,13 @@ bool SystemRezerwacji::zarezerwuj(int id_klient, const Date& data, int okres, co
     Platnosc platnosc(metoda, koszt);
 
     // id rezerwacji
-    int idRezerwacji = aktywne_rezerwacje.size() + 1;
+    int idRezerwacji = 1;
+    if(!aktywne_rezerwacje.empty()){
+        idRezerwacji=aktywne_rezerwacje.back().getId_rezerwacji();
+    }
 
 
-    Rezerwacja nowaRezerwacja(idRezerwacji, data, dataZwrotu, pozycje, platnosc, false);
+    Rezerwacja nowaRezerwacja(++idRezerwacji, data, dataZwrotu, pozycje, platnosc, false);
 
     aktywne_rezerwacje.push_back(nowaRezerwacja);
 
