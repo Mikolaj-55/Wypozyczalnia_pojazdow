@@ -275,12 +275,12 @@ void SystemRezerwacji::menuPracownik(int id_pracownik){
                             for (const auto& rez : listaRezerwacjiKlienta) {
                                 if (rez.getId_rezerwacji() == rezerwacja.getId_rezerwacji()) {
                                     docelowyKlient = &klient;
-                                    zamknijRezerwacje(id_pracownik,docelowyKlient->getId(),rez);
-                                    aktywne_rezerwacje.erase(aktywne_rezerwacje.begin()+nrRez);
-                                    cout<<"\n ZAMKNIĘTO REZERWACJE "<<endl;
                                 }
                             }
                         }
+                        zamknijRezerwacje(id_pracownik,docelowyKlient->getId(),rezerwacja);
+                        cout<<"\n ZAMKNIĘTO REZERWACJE "<<rezerwacja.getId_rezerwacji()<<endl;
+                        aktywne_rezerwacje.erase(aktywne_rezerwacje.begin()+nrRez-1);
                     }
                 
                 }else if(opcja==3){
