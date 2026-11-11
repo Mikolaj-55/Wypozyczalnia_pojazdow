@@ -265,12 +265,9 @@ void SystemRezerwacji::menuPracownik(int id_pracownik){
                         
                     }
                 }else if(opcja==2){
-                    cout<< "\nPodaj numer rezerwacji do dodania kary (0 aby cofnąć): ";
+                    cout<< "\nPodaj numer rezerwacji do zamknięcia (0 aby cofnąć): ";
                     cin>>nrRez;
                     if (nrRez > 0 && nrRez <= aktywne_rezerwacje.size()) {
-                        cout<<" \n Podaj kwotę kary :";
-                        int kara;
-                        cin>>kara;
                         Klient* docelowyKlient = nullptr;
                         Rezerwacja& rezerwacja = aktywne_rezerwacje[nrRez-1];
                         for (auto& klient : lista_klientow) {
@@ -279,6 +276,7 @@ void SystemRezerwacji::menuPracownik(int id_pracownik){
                                 if (rez.getId_rezerwacji() == rezerwacja.getId_rezerwacji()) {
                                     docelowyKlient = &klient;
                                     zamknijRezerwacje(id_pracownik,docelowyKlient->getId(),rez);
+                                    aktywne_rezerwacje.erase(aktywne_rezerwacje.begin()+nrRez);
                                     cout<<"\n ZAMKNIĘTO REZERWACJE "<<endl;
                                 }
                             }
