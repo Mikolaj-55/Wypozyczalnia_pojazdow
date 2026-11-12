@@ -2,8 +2,12 @@
 ## 1. Cel biznesowy
 System wspiera działanie wypożyczalni pojazdów. Zezwala na obsługę klientów i zarządzanie flotą pojazdów.
 ## 2. Główni aktorzy
-klient 	- może rezerwować, przeglądać pojazdy, kontrolować stan kar finansowych
-pracownik	- może zarządzać rezerwacjami i pojazdami.
+```
+klient 	- może rezerwować, przeglądać pojazdy, kontrolować stan kar finansowych.
+```
+```
+pracownik - może zarządzać rezerwacjami i pojazdami.
+```
 ## 3. User case
 ```
 1. Wyszukaj pojazd
